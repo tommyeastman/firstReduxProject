@@ -92,3 +92,5 @@ Always need to create a file in the project directory called .eslintrc which con
 provider translates the data in the store into something that can be used by the react side of app.
 redux wasn't designed specifically for react, it works with other things
 react-redux library is the communication glue between redux and react.
+
+the provider component can only have one child.
