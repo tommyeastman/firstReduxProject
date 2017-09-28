@@ -198,3 +198,7 @@ the provider component can only have one child.
 
 ## JSON
 needs double quotes
+
+## bind(this)
+
+only need to bind(this) when we make reference to 'this' inside of the callback function

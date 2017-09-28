@@ -1,20 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from './src/reducers';
+import { View, Text } from 'react-native';
+//import { Provider } from 'react-redux';
+//import { createStore } from 'redux';
+//import reducers from './src/reducers';
 import { Header } from './src/components/common';
-import LibraryList from './src/components/LibraryList';
+//import LibraryList from './src/components/LibraryList';
+import SectionListBasics from './src/components/SectionListBasics';
 
 class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducers)}>
         <View>
           <Header headerText={'Tech Stack'} />
-          <LibraryList />
+          <Text>sometext</Text>
+          <SectionListBasics />
         </View>
-      </Provider>
     );
   }
 }

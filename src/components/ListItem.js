@@ -9,7 +9,7 @@ class ListItem extends Component {
     return (
       <CardSection>
         <Text style={titleStyle}>
-          {this.props.library.title}
+          example text.
         </Text>
       </CardSection>
     );
