@@ -83,14 +83,14 @@ generate a new copy of state for our app.
 
 # Redux + RN
 
-# Connect
+## Connect
 Connect helper function is how you get access to redux state from RN components.
 In bottom of RN component, call connect, which accesses the global state and can pass it into the RN component as a prop
 ```javascript
 export default connect((mapStatetoProps)(LibraryList);
 ```
 
-# Flow of Redux + RN
+## Flow of Redux + RN
 
 1.
 
@@ -164,9 +164,21 @@ class LibraryList extends React.Component {
 ```
 ![Here's an image to convey the same flow](https://user-images.githubusercontent.com/12001721/30944649-acbfb0a4-a3cf-11e7-84d4-e0995e74556c.PNG)
 
+# Lists
 
+In music app, used .map() to convert a list of data objects into a list of components. 
+This approach works on a few items, but once you start to scale, this performance will be bad.
+If we had 100 albums to show, using the map method would create 100 components in memory ready to show
+the instant we create our list.
 
+## ListView
+Better method- RN's ListView.
+ListView figures out what items in the list are currently visible to the user, then creates a component
+only for the items which should be visible on the screen. It only renders this subset of the list.
 
+As user scrolls down, the component which disappears from the top of the screen gets added to the bottom of
+the screen, and the next item coming into view gets added to that component. So the number of components
+rendered remains the same, but the data in those components gets changed. 
 
 # Misc
 
