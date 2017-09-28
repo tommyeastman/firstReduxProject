@@ -2,6 +2,7 @@
 import React from 'react';
 import { ListView } from 'react-native';
 import { connect } from 'react-redux';
+import ListItem from './ListItem';
 
 class LibraryList extends React.Component {
     //boiler plate list view setup
@@ -10,18 +11,19 @@ class LibraryList extends React.Component {
             rowHasChanged: (r1, r2) => r1 !== r2
         });
 
-        this.DataSource = ds.cloneWithRows(this.props.librariesPassed);
+        this.dataSource = ds.cloneWithRows(this.props.librariesPassed);
+        console.log(this.dataSource);
     }
 
-    renderRowHelper() {
-        
+    renderRow(library) {
+        return <ListItem librariesPassed={library} />;
     }
 
     render() {
         return (
         <ListView
-            dataSource={this.DataSource}
-            renderRow={this.renderRowHelper}
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
         />
         );
     }
