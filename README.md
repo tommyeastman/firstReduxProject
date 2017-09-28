@@ -1,4 +1,4 @@
-#Redux
+# Redux
 
 [play with redux](https://stephengrider.github.io/JSPlaygrounds/)
 
@@ -81,31 +81,16 @@ create store, load it with one or more reducers, reducers produce state,
 if we dispatch an action from that store it will be sent to each reducer and it will
 generate a new copy of state for our app.
 
-#ES Lint
+# Redux + RN
 
-Always need to create a file in the project directory called .eslintrc which contains the following code:
-```javascript
-{
-    "extends": "rallycoding"
-}
-```
-provider translates the data in the store into something that can be used by the react side of app.
-redux wasn't designed specifically for react, it works with other things
-react-redux library is the communication glue between redux and react.
-
-the provider component can only have one child.
-
-#JSON
-needs double quotes
-
-#Connect
+# Connect
 Connect helper function is how you get access to redux state from RN components.
 In bottom of RN component, call connect, which accesses the global state and can pass it into the RN component as a prop
 ```javascript
 export default connect((mapStatetoProps)(LibraryList);
 ```
 
-#Flow of Redux + RN
+# Flow of Redux + RN
 
 1.
 
@@ -178,3 +163,26 @@ class LibraryList extends React.Component {
 
 ```
 ![Here's an image to convey the same flow](https://user-images.githubusercontent.com/12001721/30944649-acbfb0a4-a3cf-11e7-84d4-e0995e74556c.PNG)
+
+
+
+
+
+# Misc
+
+## ES Lint
+
+Always need to create a file in the project directory called .eslintrc which contains the following code:
+```javascript
+{
+    "extends": "rallycoding"
+}
+```
+provider translates the data in the store into something that can be used by the react side of app.
+redux wasn't designed specifically for react, it works with other things
+react-redux library is the communication glue between redux and react.
+
+the provider component can only have one child.
+
+## JSON
+needs double quotes
