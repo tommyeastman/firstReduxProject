@@ -7,7 +7,7 @@ class ListItem extends React.Component {
         return (
             <CardSection>
                 <Text>
-                    {this.props.librariesPassed.title}
+                    {this.props.library.title}
                 </Text>
             </CardSection>
         );

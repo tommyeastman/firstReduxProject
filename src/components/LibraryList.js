@@ -16,7 +16,7 @@ class LibraryList extends React.Component {
     }
 
     renderRow(library) {
-        return <ListItem librariesPassed={library} />;
+        return <ListItem library={library} />;
     }
 
     render() {
