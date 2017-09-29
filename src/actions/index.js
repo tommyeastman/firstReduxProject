@@ -7,6 +7,7 @@
 //Whenever we call this action creator, the returned action will be automatically dispatched for us
 //and sent off to all of the different reducers.
 
+//whenever want to export many things, just use export. not export default
 export const selectLibrary = (libraryId) => {
     return {
         type: 'select_library',

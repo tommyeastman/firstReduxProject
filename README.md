@@ -93,6 +93,21 @@ In bottom of RN component, call connect, which accesses the global state and can
 ```javascript
 export default connect((mapStatetoProps)(LibraryList);
 ```
+This helper function is also how you bind action creators to a RN component.
+
+mapStatetoProps is always first argument to connect().
+If don't want to use, then have to pass in null.
+To bind action creators to a RN component, first import them to the component:
+```javascript
+import * as actions from '../actions';
+```
+Then bind them
+```javascript
+export default connect(null, actions)(ListItem);
+```
+This does 2 things:
+1. dispatches all the actions to the redux store
+2. passes the actions to the component as props.
 
 ## Flow of Redux + RN
 
@@ -223,3 +238,15 @@ needs double quotes
 ## bind(this)
 
 only need to bind(this) when we make reference to 'this' inside of the callback function
+
+## nav
+
+use two dots to go up a level
+```javascript
+import myComponent from '../'
+```
+
+give me everything that was exported from the actions file and assign it to the variable actions
+```javascript
+import * as actions from '../actions';
+```
