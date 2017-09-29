@@ -183,6 +183,15 @@ class LibraryList extends React.Component {
 ```
 ![Here's an image to convey the same flow](https://user-images.githubusercontent.com/12001721/30944649-acbfb0a4-a3cf-11e7-84d4-e0995e74556c.PNG)
 
+## MapStatetoProps
+
+The use of mapStatetoProps really goes beyond what we already described. mapStatetoProps actually has 2 arguments,
+state and ownProps.
+```javascript
+const mapStatetoProps (state, ownProps) => {}
+```
+ownProps are the props that were passed to the component that we're wrapping.
+
 # Lists
 
 In music app, used .map() to convert a list of data objects into a list of components. 

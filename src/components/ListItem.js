@@ -6,12 +6,14 @@ import * as actions from '../actions';
 
 class ListItem extends Component {
 
-  displayDetails(currentRow, currentDescription) {
-    if (this.props.IdPassed === currentRow) {
+  displayDetails() {
+    const { expanded, itemPassed } = this.props;
+
+    if (expanded) {
     return (
       <View>
         <CardSection>
-          <Text>{currentDescription}</Text>
+          <Text style={styles.description}>{itemPassed.description}</Text>
         </CardSection>
       </View>
     );
@@ -19,7 +21,7 @@ class ListItem extends Component {
   }
 
   render() {
-    const { id, title, description } = this.props.itemPassed;
+    const { id, title } = this.props.itemPassed;
 
     return (
       <View>
@@ -30,7 +32,7 @@ class ListItem extends Component {
             </CardSection>
           </View>
         </TouchableWithoutFeedback>
-        {this.displayDetails(id, description)}
+        {this.displayDetails()}
       </View>
     );
   }
@@ -38,15 +40,19 @@ class ListItem extends Component {
 
 const styles = {
   title: {
-    fontSize: 18,
+    fontSize: 24,
     paddingLeft: 15
   },
   description: {
+    fontSize: 16,
     paddingLeft: 10,
     paddingRight: 10
   }
 };
 
-const mapStatetoProps = (state) => ({ IdPassed: state.selectedLibraryId });
+const mapStatetoProps = (state, ownProps) => {
+  const expanded = state.selectedLibraryId === ownProps.itemPassed.id; 
+  return { expanded };
+};
 
 export default connect(mapStatetoProps, actions)(ListItem);
