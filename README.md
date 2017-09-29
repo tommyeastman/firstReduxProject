@@ -87,6 +87,14 @@ Can return null.
 
 # Redux + RN
 
+## Provider
+Provider translates the data in the store into something that can be used by the react side of app.
+redux wasn't designed specifically for react, it works with other things.
+
+react-redux library is the communication glue between redux and react.
+
+the provider component can only have one child.
+
 ## Connect
 Connect helper function is how you get access to redux state from RN components.
 In bottom of RN component, call connect, which accesses the global state and can pass it into the RN component as a prop
@@ -109,7 +117,21 @@ This does 2 things:
 1. dispatches all the actions to the redux store
 2. passes the actions to the component as props.
 
+## MapStatetoProps
+
+The use of mapStatetoProps really goes beyond what we already described. mapStatetoProps actually has 2 arguments,
+state and ownProps.
+```javascript
+const mapStatetoProps (state, ownProps) => {}
+```
+ownProps are the props that were passed to the component that we're wrapping.
+
+whenever our application state changes, our mapStatetoProps function will re-run, pass in a new set of props to our component,
+which causes our component to re-render
+
 ## Flow of Redux + RN
+
+### Flow of Initial Render
 
 1.
 
@@ -183,14 +205,32 @@ class LibraryList extends React.Component {
 ```
 ![Here's an image to convey the same flow](https://user-images.githubusercontent.com/12001721/30944649-acbfb0a4-a3cf-11e7-84d4-e0995e74556c.PNG)
 
-## MapStatetoProps
+### Flow of Response to User Input
 
-The use of mapStatetoProps really goes beyond what we already described. mapStatetoProps actually has 2 arguments,
-state and ownProps.
+Whenever we touch a title, we pass that title's id into selectLibrary.
+selectLibrary is an action creator that has been binded to the component through the connect() method.
 ```javascript
-const mapStatetoProps (state, ownProps) => {}
+<TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
 ```
-ownProps are the props that were passed to the component that we're wrapping.
+when selectLibrary is called, the connect method dispatches the action, which causes all the reducers to re-run.
+```javascript
+export const selectLibrary = (libraryId) => {
+    return {
+        type: 'select_library',
+        payload: libraryId
+    };
+};
+```
+one reducer will be effected by this, the SelectionReducer.
+```javascript
+export default (state, action) => {
+    if (action.type === 'select_library') { return action.payload; }
+    return state || null;
+};
+```
+This will recalculate the state.
+Any time state is updated, mapStatetoProps is re-run automatically.
+This passes in a new set of props to our component, which causes our component to re-render.
 
 # Lists
 
@@ -207,6 +247,22 @@ only for the items which should be visible on the screen. It only renders this s
 As user scrolls down, the component which disappears from the top of the screen gets added to the bottom of
 the screen, and the next item coming into view gets added to that component. So the number of components
 rendered remains the same, but the data in those components gets changed. 
+
+# Animation
+
+Animation is super easy.
+just grab LayoutAnimation from 'react-native'
+```javascript
+import { LayoutAnimation } from 'react-native';
+```
+put the componentWillUpdatate() lifecycle method at the top of your component, and call LayoutAnimation from there:
+```javascript
+class ListItem extends Component {
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+```
+componentWillUpdate() is a lifecycle method that is called right before the componenet is re-rendered to the screen.
 
 # Styling
 
@@ -235,11 +291,6 @@ Always need to create a file in the project directory called .eslintrc which con
     "extends": "rallycoding"
 }
 ```
-provider translates the data in the store into something that can be used by the react side of app.
-redux wasn't designed specifically for react, it works with other things
-react-redux library is the communication glue between redux and react.
-
-the provider component can only have one child.
 
 ## JSON
 needs double quotes
@@ -259,6 +310,3 @@ give me everything that was exported from the actions file and assign it to the 
 ```javascript
 import * as actions from '../actions';
 ```
-
-## componentWillUpdate
-Lifecycle method that is called right before the componenet is re-rendered to the screen.
