@@ -81,6 +81,10 @@ create store, load it with one or more reducers, reducers produce state,
 if we dispatch an action from that store it will be sent to each reducer and it will
 generate a new copy of state for our app.
 
+Always need to return a value from a reducer. 
+If you return undefined as an initial value, Redux will assume you made an error.
+Can return null.
+
 # Redux + RN
 
 ## Connect
