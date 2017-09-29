@@ -6,17 +6,32 @@ import * as actions from '../actions';
 
 class ListItem extends Component {
 
+  displayDetails(currentRow, currentDescription) {
+    if (this.props.IdPassed === currentRow) {
+    return (
+      <View>
+        <CardSection>
+          <Text>{currentDescription}</Text>
+        </CardSection>
+      </View>
+    );
+  }
+  }
+
   render() {
-    const { id, title } = this.props.itemPassed;
+    const { id, title, description } = this.props.itemPassed;
 
     return (
-      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
-        <View>
-          <CardSection>
-            <Text style={styles.title}>{title}</Text>
-          </CardSection>
-        </View>
-      </TouchableWithoutFeedback>
+      <View>
+        <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
+          <View>
+            <CardSection>
+              <Text style={styles.title}>{title}</Text>
+            </CardSection>
+          </View>
+        </TouchableWithoutFeedback>
+        {this.displayDetails(id, description)}
+      </View>
     );
   }
 }
@@ -32,4 +47,6 @@ const styles = {
   }
 };
 
-export default connect(null, actions)(ListItem);
+const mapStatetoProps = (state) => ({ IdPassed: state.selectedLibraryId });
+
+export default connect(mapStatetoProps, actions)(ListItem);
