@@ -11,7 +11,7 @@ renderItem({ item }) {
   //console.log(item.title);
   return (
     <ListItem
-    itemPassed={ item }
+    itemPassed={item}
     />
   );
 }
