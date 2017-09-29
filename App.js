@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 //import reducers from './src/reducers';
 import { Header } from './src/components/common';
 //import LibraryList from './src/components/LibraryList';
-import FlatListBasics from './src/components/FlatListBasics';
+import FlatList from './src/components/FlatList';
 
 class App extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class App extends React.Component {
         <View>
           <Header headerText={'Tech Stack'} />
           <Text>sometext</Text>
-          <FlatListBasics />
+          <FlatList />
         </View>
     );
   }
