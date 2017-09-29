@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
+
+  renderDescription() {
+    console.log('hello');
+  }
+
   render() {
-    console.log(this.props);
-    
+    //console.log(this.props.selectLibrary);
+
     return (
-      <View>
-        <CardSection>
-          <Text style={styles.title}>{this.props.itemPassed.title}</Text>
-        </CardSection>
-        <CardSection>
-          <Text style={styles.description}>{this.props.itemPassed.description}</Text>
-        </CardSection>
-      </View>
+      <CardSection>
+        <TouchableWithoutFeedback onPress={this.renderDescription}>
+          <View>
+            <Text style={styles.title}>{this.props.itemPassed.title}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </CardSection>
+
     );
   }
 }
