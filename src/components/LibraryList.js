@@ -19,7 +19,7 @@ renderItem({ item }) {
   render() {
     //console.log(this.props.librariesPassed);
     return (
-      <View>
+      <View style={{ flex: 1 }}>
       <FlatList
       data={this.props.librariesPassed}
       keyExtractor={this.keyExtractor}
