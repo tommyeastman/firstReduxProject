@@ -1,22 +1,30 @@
 //render list of libraries to user
 import React, { Component } from 'react';
-  import { SectionList, Text, View } from 'react-native';
-  //import { View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 //import ListItem from './ListItem';
 
 class LibraryList extends Component {
+    keyExtractor = (item => item.id);
+
+renderItem({ item }) {
+  //console.log(item.title);
+  return (
+    <View>
+      <Text>{item.title}</Text>
+      <Text>{item.description}</Text>
+    </View>
+  );
+}
 
   render() {
     //console.log(this.props.librariesPassed);
-    console.log(this.props.librariesPassed[0].title);
-    console.log(this.props.librariesPassed[0].description);
     return (
       <View>
-      <SectionList
-      sections={this.props.librariesPassed}
-      renderItem={({ item }) => <Text>{item.description}</Text>}
-      renderSectionHeader={({ section }) => <Text>{section.title}</Text>}
+      <FlatList
+      data={this.props.librariesPassed}
+      keyExtractor={this.keyExtractor}
+      renderItem={this.renderItem}
       />
       </View>
     );
