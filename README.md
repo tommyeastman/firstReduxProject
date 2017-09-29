@@ -259,3 +259,6 @@ give me everything that was exported from the actions file and assign it to the 
 ```javascript
 import * as actions from '../actions';
 ```
+
+## componentWillUpdate
+Lifecycle method that is called right before the componenet is re-rendered to the screen.
