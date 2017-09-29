@@ -1,6 +1,6 @@
 //render list of libraries to user
 import React, { Component } from 'react';
-  import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
   //import { View } from 'react-native';
 import { connect } from 'react-redux';
 //import ListItem from './ListItem';
@@ -9,11 +9,12 @@ class LibraryList extends Component {
 
   render() {
     //console.log(this.props.librariesPassed);
-    console.log(this.props.librariesPassed[0].title);
+    //console.log(this.props.librariesPassed[0].title);
     return (
       <View>
       <FlatList
-      data={this.props.librariesPassed[0]}
+      data={this.props.librariesPassed}
+      _keyExtractor={this._keyExtractor}
       renderItem={({ item }) => <Text>{item.title}</Text>}
       />
       </View>
