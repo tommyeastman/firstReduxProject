@@ -6,22 +6,17 @@ import * as actions from '../actions';
 
 class ListItem extends Component {
 
-  renderDescription() {
-    console.log('hello');
-  }
-
   render() {
-    //console.log(this.props.selectLibrary);
+    const { id, title } = this.props.itemPassed;
 
     return (
-      <CardSection>
-        <TouchableWithoutFeedback onPress={this.renderDescription}>
-          <View>
-            <Text style={styles.title}>{this.props.itemPassed.title}</Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </CardSection>
-
+      <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
+        <View>
+          <CardSection>
+            <Text style={styles.title}>{title}</Text>
+          </CardSection>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
