@@ -1,8 +1,8 @@
 //render list of libraries to user
 import React, { Component } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-//import ListItem from './ListItem';
+import ListItem from './ListItem';
 
 class LibraryList extends Component {
     keyExtractor = (item => item.id);
@@ -10,10 +10,9 @@ class LibraryList extends Component {
 renderItem({ item }) {
   //console.log(item.title);
   return (
-    <View>
-      <Text>{item.title}</Text>
-      <Text>{item.description}</Text>
-    </View>
+    <ListItem
+    itemPassed={ item }
+    />
   );
 }
 
